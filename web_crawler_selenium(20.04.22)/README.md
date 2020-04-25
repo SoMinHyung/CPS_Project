@@ -1,7 +1,9 @@
 # selenium을 이용한 크롤링
 
-연습용 (강의 코드입니다)
+연습용코드 (강의 코드입니다)
+
 DynamicWeb_crawler_cau
+
 DynamicWeb_crawler_kyobo
 
 
