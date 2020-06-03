@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[34]:
 
 
 from selenium import webdriver
@@ -52,19 +52,21 @@ class Scraper():
         
     
 
-    def find_review_page(driver, num):
+    def find_review_page(self,driver, num, title):
         """
         num번째 영화의 리뷰페이지로 이동하는 함수입니다.
         """
         #해당 영화 페이지로 이동
-        driver.find_element_by_link_text(title[num]).click()
-        time.sleep(1)
+        print(title)
+        driver.find_element_by_link_text(title).click()
+        time.sleep(3)
 
         #영화 페이지에서 리뷰페이지로 이동
         html = driver.page_source
         bs = BeautifulSoup(html, "html.parser") 
         move = bs.find("div", class_="user-comments").find_all('a')
         driver.find_element_by_link_text(move[-1].string).click()
+        time.sleep(3)
 
         
 
@@ -74,6 +76,8 @@ class Scraper():
         score = 1 이면 별점1점인 부정적인 리뷰
         score = 10 이면 별점10점임 긍정적인 리뷰
         """
+        time.sleep(1)
+        
         #별점 1점을 선택
         if score == 1:
             driver.find_element_by_xpath('//*[@id="main"]/section/div[2]/div[1]/form/div/div[3]/select/option[2]').click()
@@ -108,7 +112,7 @@ class Scraper():
             else:
                 sentimentList.append("positive")
 
-        write_csv(reviewList, sentimentList)
+        self.write_csv(reviewList, sentimentList)
 
         
         
@@ -117,11 +121,11 @@ class Scraper():
         driver = webdriver.Chrome(path)
         
         try:
-            make_csv()
+            self.make_csv()
 
             #평가가 많은 순으로 100개 정렬
             driver.get("https://www.imdb.com/chart/top/?sort=nv,desc&mode=simple&page=1")
-            time.sleep(1)
+            time.sleep(2)
 
             #검색할 검색어는 1~100위의 영화
             html = driver.page_source
@@ -144,11 +148,11 @@ class Scraper():
             count = 0
             for t in title:
                 #n번째 영화의 리뷰페이지로 이동
-                find_review_page(driver, count)
+                self.find_review_page(driver, count, t)
 
                 #리뷰페이지에서 리뷰를 크롤링, csv파일에 저장
-                review_scrap(driver, 1)
-                review_scrap(driver, 10)
+                self.review_scrap(driver, 1)
+                self.review_scrap(driver, 10)
 
                 #크롤링을 마친 후, 초기 페이지로 이동
                 driver.get("https://www.imdb.com/chart/top/?sort=nv,desc&mode=simple&page=1")
@@ -166,9 +170,15 @@ class Scraper():
             driver.quit()
 
 
-# In[ ]:
+# In[37]:
 
 
 s = Scraper()
-s.scrap(250)
+s.scrap(11)
+
+
+# In[ ]:
+
+
+
 
