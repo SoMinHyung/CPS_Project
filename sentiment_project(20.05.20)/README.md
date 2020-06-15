@@ -10,7 +10,7 @@
 - 수집한 데이터의 EDA를 진행하는 코드입니다. (Exploratory data analysis)
 
 
-2. data_crawler
+2. movie_crawler
 - imdb에서 영화에서 좋은 리뷰, 나쁜 리뷰를 크롤링해옵니다.
 현재 세팅된 것으로는 각각 12500개씩을 가져오도록 해놨으나, 수정가능합니다.
 py37에 최적화되어있습니다
