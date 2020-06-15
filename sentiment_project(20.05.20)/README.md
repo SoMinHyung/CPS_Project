@@ -12,9 +12,10 @@ BoW(Bag of Word)를 체크하기 위해, tfidf를 이용하여 희소행렬을 �
 전처리된 데이터를 tensorflow를 활용하여 감성분석 기초 모델을 만듭니다.
 
 
-#추후 진행예정
-
-3. security_crawler는 security를 키워드로 한 글들을 크롤링해옵니다.
+3. tweet_crawler는 iot security를 키워드로 한 트윗들을 크롤링해옵니다. 5월과 6월간의 모든 트윗으로 대략 12000개정도입니다
 
 
-4. result는 model_py에서 생성한 h5파일을 사용하여, 글의 감성을 분석하여 사용자의 인식을 조사합니다.
+4. quora_crawler는 iot security를 키워드로 한 질문과 대답(Q&A)들을 크롤링해옵니다. 약 400개 정도의 글을 가져옵니다.
+
+
+5. result는 model_py에서 생성한 h5파일을 사용하여, 글의 감성을 분석하여 사용자의 인식을 조사합니다.
