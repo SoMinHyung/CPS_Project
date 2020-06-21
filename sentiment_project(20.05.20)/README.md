@@ -137,11 +137,37 @@
 - 테스트 결과 정확도가 93%의 모델이 생성되었음을 알 수 있다.
 
 
+### 일반인의 IoT security관련 크롤링 결과
+
+<img src="https://user-images.githubusercontent.com/11614046/85218190-b33f5e00-b3d2-11ea-9184-5d0116b193d0.PNG" width="80%"></img>
+- 위와 같이 Quora에서 400개 (검색어 : iot security)
+
+<img src="https://user-images.githubusercontent.com/11614046/85218203-e2ee6600-b3d2-11ea-9042-4a070bb9fdae.PNG" width="80%"></img>
+
+- 위와 같이 트위터에서 13000개 (검색어 : iot security) (트윗날짜, 계정명, 내용을 수집)
+
+<img src="https://user-images.githubusercontent.com/11614046/85218215-0d402380-b3d3-11ea-86bd-22dfd78091a5.PNG" width="80%"></img>
+- 위와 같이 구글 survey를 이용하여, iot security에 대해 어떻기 생각하는지 질문하여 39개의 응답데이터를 수집.
+
+
+### 구축한 모델로 iot security를 분석한 결과
+
+<img src="https://user-images.githubusercontent.com/11614046/85218260-a2431c80-b3d3-11ea-877f-a9a4f8427d10.PNG" width="80%"></img>
+- 위는 5월 1일 ~ 6월 10일까지의 데이터 분석 결과이다.
+- 전체 평균 점수는 40.5점으로 약간 부정적으로 보고 있는 편이다.
+- 설문조사는 33점, Quora는 45점, Twitter는 40점이다.
+
+<img src="https://user-images.githubusercontent.com/11614046/85218347-68264a80-b3d4-11ea-9ccb-9d20cfc38281.PNG" width="80%"></img>
+- 0.9점 이상의 긍정적인 데이터를 보면 중요하다, office upgrade를 위한 것이라고 생각해야 한다 등이 있다. 
+- 0.1점 미만의 부정적인 데이터를 보시면 관련 표준이나 정책이 부족함을 비판하는 글, iot의 보안 취약성이 계속 문제가 되어 왔고 현재 여러 분야에서 iot 기술이 사용되고 있지만 여전히 최소한의 security protection만 하고 있다는 글, iot security 공격이 사업에 큰 악영향을 준다는 글이 있었다
 
 
 
-
-
-
+### 해석
+- 이러한 차이는 자료 출처의 특성에 따라서 발생한 것으로 보인다. 
+- 설문조사는 IoT를 모르는 사람의 데이터도 포함되지만, Quora와 Twitter는 관련 분야에 관심이 있거나, 전문가인 사람이 글을 쓰는 경우가 많습니다.
+- 그래서 설문조사의 경우 모른다, 어렵다 등의 답변이 많아서 부정적으로 나온 것으로 해석됩니다. 
+- 그리고 Quora의 경우 해당 분야에 관심있다고 태그한 사람에게 직접적으로 답변을 요청하는 기능이 있어 이들이 설명문인 글이 많아 다른 자료에 비해 상대적으로 글이 길고, (iot security에 대한 부정적이고, 긍정적인 내용을 모두 포함한 경우가 많아 중간인 0.5점에 가까운 점수를 받은 것으로 보입니다). 
+- 수집한 데이터를 확인한 결과 트위터는 IoT 보안 관련 제품 광고, 관련 뉴스, 포스팅 등의 자료 제목 등의 데이터가 많아 Quora의 데이터보다는 부정적으로 나온 것으로 보입니다. ex) 당신의 security가 위험합니다. 저희의 제품을 사용하세요!
 
 
