@@ -18,6 +18,8 @@
 - Google docs로 설문지를 만들고, 해외 각종 커뮤니티에 올려 IoT Security에 관한 데이터를 추가 수집한다.
 - 구축한 감성사전으로 iot security관련 데이터를 분석하여, 일반인의 보안 sentiment를 알아본다.
 
+<img src="https://user-images.githubusercontent.com/11614046/85217434-f813c680-b3cb-11ea-9b03-d729de0bf14a.PNG" width="50%"></img>
+
 
 ### 사용한 오픈 소스
 - Python 3.7
@@ -80,3 +82,66 @@
 
 
 ## 결과
+
+### IMDB 크롤링 결과
+
+<img src="https://user-images.githubusercontent.com/11614046/85217468-7f613a00-b3cc-11ea-9a5c-31a4ac75ca62.PNG" width="70%"></img>
+
+- 리뷰가 많은 영화들의 별점 10개와 1개인 리뷰를 각각 12500개씩 크롤링합니다.
+- 별점 10점인 리뷰는 positive, 별점 1점인 리뷰는 negative로 저장하도록 합니다.
+  
+  
+  
+### EDA 결과(IMDB의 데이터 분석)
+
+<img src="https://user-images.githubusercontent.com/11614046/85217609-a2401e00-b3cd-11ea-89c1-c217158a5098.PNG" width="25%"></img>
+
+- 위는 불용어 삭제 전의 분석 결과.
+- stopword의 사용이 굉장히 많기 때문에, 해당 단어들을 삭제해야할 필요가 있다.
+- 따라서, nltk의 stopword를 가져와서 일치하면 삭제하도록 했다.
+  
+  
+
+<img src="https://user-images.githubusercontent.com/11614046/85217538-10381580-b3cd-11ea-8d01-489ed6c9ef4e.png" width="70%"></img>
+
+- 위는 불용어 삭제 후 분석 결과. (전체, 긍정, 부정 순)
+  
+- 알 수 있는 점
+	1. 긍정과 부정에서 good, like 등의 단어가 동시에 상위권에 들어있는 것을 알 수 있다.
+	- good과 not good이라는 단어가 있지만, 단어로 나누다보니 not과 good이 쪼개져서 나온 결과라고 할 수 있다.
+	- 따라서, ngram을 이용해 단어를 2개씩 묶어서 분석하도록 하자.
+	- 예를 들면, i don't like actor이면 i don't / don't like / like actor와 같은 식으로 나눈다.
+	- 문맥상의 의미를 반영할 수 있다.  
+  '
+  
+	2. film, movie, really와 같이 일반적으로 많이 사용되는 단어들은 삭제되지 않았다.
+	- 많은 데이터에서 많이 쓰인 데이터의 가중치는 줄이고, 적은 데이터에서 많이 쓰인 데이터의 가중치는 높여준다.
+	- tf-idf행렬을 이용한다.
+	- <img src="https://user-images.githubusercontent.com/11614046/85217855-cf8dcb80-b3cf-11ea-9b2d-01614a7df148.PNG" width="100%"></img>
+
+	
+### 감성사전 구축 결과
+- 딥러닝 모델 개요
+<img src="https://user-images.githubusercontent.com/11614046/85217937-6eb2c300-b3d0-11ea-8fdb-b1db9224db2b.PNG" width="100%"></img>
+
+- 위와 같이 특징을 추출하는데 효율적인 dense레이어를 2개넣었다.
+- 과적합을 막기 위해 각 dense레이어에 dropout 20%를 설정하였다.
+- 첫 dense레이어의 결과는 1 초과의 값이기 때문에, 활성화함수로는 정답률이 높은 relu함수를 사용한다.
+- 두번째 dense레이어는 결과가 0 or 1의 값이 나오기 때문에, 활성화함수로 sigmoid를 사용한다.
+- (값이 0이면 negative, 1이면 positive한 글을 작성한 것이다)
+- 손실함수는 binary-crossentropy를 사용한다. (결과가 0 or 1이기 때문에)
+- Callback을 사용하여, 정확도가 개선되지 않는다면 조기에 종료하도록 설정한다.
+- 데이터가 너무 많기 때문에, batch학습을 활용한다.
+
+<img src="https://user-images.githubusercontent.com/11614046/85218073-b6861a00-b3d1-11ea-9e63-b9775680f7d0.png" width="80%"></img>
+- 테스트 결과 정확도가 93%의 모델이 생성되었음을 알 수 있다.
+
+
+
+
+
+
+
+
+
+
