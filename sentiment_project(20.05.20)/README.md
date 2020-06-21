@@ -36,10 +36,12 @@
 - tensorflow 2.1.0 
 - keras 2.2.4
 
+
 ## 코드 및 파일설명
 ### 0. data 폴더에는 
-	크롤링한 데이터인 quora와 twit의 csv파일
-	딥러닝모델(h5)
+	크롤링한 데이터인 quora와 twit의 csv파일,
+	설문조사 데이터인 survey result.csv파일,
+	딥러닝모델(h5),
 	데이터 분석 결과인 sentiment_result.csv파일이 있습니다. 
 
 
